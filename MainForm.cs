@@ -177,7 +177,7 @@ namespace IFC_AddGeolocation_Ver1
             string[] data_strings = File.ReadAllLines(FilePath_inputIFC);
             string IFC_version = data_strings[4].Substring(14, data_strings[4].Length - 14 - 4);
             //string IFC_Software = data_strings[7].Substring(22, data_strings[7].Length - 22 - 9);
-
+            textBox1.Text = $"{DateTime.Now} Вычисленные параметры: X0={coord_X}, Y0={coord_Y}, Z0={coord_Z}, θ={coord_Angle}";
             //0.2 - Объявление вспомогательных переменных
             string data_str = null;
             string data_str2 = null;
@@ -742,6 +742,7 @@ namespace IFC_AddGeolocation_Ver1
             double cos_a = Math.Cos(θ_rad);
             double sin_a = Math.Sin(θ_rad);
 
+            textBox1.Text = $"{DateTime.Now} Вычисленные параметры: X0={X0}, Y0={Y0}, Z0={Z0}, θ={θ}";
             //Блок 2 - Часть добавления данных в IFC - файл
 
             textBox1.Text = "Процесс обработки запущен";
@@ -954,8 +955,8 @@ namespace IFC_AddGeolocation_Ver1
 
 		private void button11_Click(object sender, EventArgs e)
 		{
-            //Справка
-		}
+            System.Diagnostics.Process.Start("https://github.com/GeorgGrebenyuk/IFC_GeoSupport");
+        }
 
 		private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
 		{

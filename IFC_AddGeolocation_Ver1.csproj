@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C9C56ACC-4942-4CB4-A281-52F4D970A2B3}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>IFC_AddGeolocation_Ver1</RootNamespace>
     <AssemblyName>IFC_AddGeolocation_Ver1</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -37,9 +37,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autodesk.Navisworks.Api">
-      <HintPath>C:\Program Files\Autodesk\Navisworks Manage 2021\Autodesk.Navisworks.Api.dll</HintPath>
-    </Reference>
     <Reference Include="MathNet.Numerics, Version=4.12.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MathNet.Numerics.4.12.0\lib\net461\MathNet.Numerics.dll</HintPath>
     </Reference>
