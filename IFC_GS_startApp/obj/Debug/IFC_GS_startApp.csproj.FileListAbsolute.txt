@@ -1,8 +1,0 @@
-C:\Work\Code\IFC_GeoSupport\IFC_GS_startApp\bin\Debug\IFC_GS_startApp.dll
-C:\Work\Code\IFC_GeoSupport\IFC_GS_startApp\bin\Debug\IFC_GS_startApp.pdb
-C:\Work\Code\IFC_GeoSupport\IFC_GS_startApp\bin\Debug\Autodesk.Navisworks.Api.dll
-C:\Work\Code\IFC_GeoSupport\IFC_GS_startApp\bin\Debug\Autodesk.Navisworks.Api.xml
-C:\Work\Code\IFC_GeoSupport\IFC_GS_startApp\obj\Debug\IFC_GS_startApp.csproj.CoreCompileInputs.cache
-C:\Work\Code\IFC_GeoSupport\IFC_GS_startApp\obj\Debug\IFC_GS_startApp.csproj.CopyComplete
-C:\Work\Code\IFC_GeoSupport\IFC_GS_startApp\obj\Debug\IFC_GS_startApp.dll
-C:\Work\Code\IFC_GeoSupport\IFC_GS_startApp\obj\Debug\IFC_GS_startApp.pdb
