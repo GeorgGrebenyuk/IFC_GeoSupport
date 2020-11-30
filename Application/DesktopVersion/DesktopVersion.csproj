@@ -7,7 +7,7 @@
     <ProjectGuid>{A558F70F-9CE0-470C-9148-DBD34284D426}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>DesktopVersion</RootNamespace>
-    <AssemblyName>DesktopVersion</AssemblyName>
+    <AssemblyName>IFC_GeoSupport</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -31,6 +31,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>dea384f13aaece53290e2edb43b0dec9.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MathNet.Numerics, Version=4.12.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -94,6 +97,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Cartesian_coordinate_system_handedness.svg3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dea384f13aaece53290e2edb43b0dec9.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

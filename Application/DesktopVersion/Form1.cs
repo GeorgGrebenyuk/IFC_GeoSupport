@@ -19,8 +19,10 @@ namespace DesktopVersion
 		public Form1()
 		{
 			InitializeComponent();
-			//radioButton4.Enabled = false;
-			//radioButton3.Checked = true;
+			radioButton1.Enabled = false; //Сделать щадящий систему алгоритм, перезапись StringBuider'ом жесткий
+			radioButton2.Checked = true; //Включен по дефолту
+			radioButton3.Checked = true; //Включен по дефолту
+			radioButton4.Enabled = false; //С моделью надо разбираться для каждого свойства
 		}
 
 		
@@ -67,10 +69,14 @@ namespace DesktopVersion
 
 		private void button2_Click(object sender, EventArgs e) //Кнопка сохранения файла
 		{
+			saveFileDialog1.Filter = "Industry Foundation Classes(*.ifc)|*.ifc";
+			if (saveFileDialog1.CheckFileExists == true) Path.ChangeExtension(saveFileDialog1.FileName, ".ifc");
 			if (saveFileDialog1.ShowDialog() == DialogResult.Cancel) return;
 		}
 		private void button1_Click(object sender, EventArgs e) //Кнопка выбора исходного файла
 		{
+			openFileDialog3.Filter = "Industry Foundation Classes(*.ifc)|*.ifc";
+			if (openFileDialog3.CheckFileExists == true) Path.ChangeExtension(openFileDialog3.FileName, ".ifc");
 			if (openFileDialog3.ShowDialog() == DialogResult.Cancel) return;
 		}
 
@@ -105,6 +111,9 @@ namespace DesktopVersion
 
 		private void button5_Click(object sender, EventArgs e) //Кнопка сохранения результатов расчета
 		{
+			saveFileDialog2.Filter = "Файлы XML(*.xml)|*.xml";
+			if (saveFileDialog2.CheckFileExists == true) Path.ChangeExtension(saveFileDialog2.FileName, ".xml");
+
 			if (saveFileDialog2.ShowDialog() == DialogResult.Cancel) return;
 			else
 			{
@@ -136,6 +145,8 @@ namespace DesktopVersion
 				Value_ωz.Add(Value_Units2);
 				SaveResults.Save(saveFileDialog2.FileName);
 				textBox7.Text = DateTime.Now + " " + "Запись в файл завершена!";
+
+				
 			}
 		}
 
@@ -204,6 +215,12 @@ namespace DesktopVersion
 		}
 		private void button7_Click(object sender, EventArgs e) //Запуск всего процесса
 		{
+			//Ряд действий по проверке введенных параметров
+			if (File.Exists(openFileDialog3.FileName) == false  || listBox1.SelectedIndex == -1) //|| File.Exists(saveFileDialog1.FileName) == false
+			{
+				textBox7.Text = "Не выбраны все параметры!";
+				return; 
+			}
 			ChangingFile.Clear(); //Обнуляем нащ String Builder
 
 			//Присваиваем булеву истину для параметра записи файла
