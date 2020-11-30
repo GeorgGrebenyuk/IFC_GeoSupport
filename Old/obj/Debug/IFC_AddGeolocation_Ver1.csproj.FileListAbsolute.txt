@@ -28,3 +28,17 @@ C:\Work\Code\IFC_GeoSupport\obj\Debug\IFC_AddGeolocation_Ver1.csproj.CopyComplet
 C:\Work\Code\IFC_GeoSupport\obj\Debug\IFC_AddGeolocation_Ver1.exe
 C:\Work\Code\IFC_GeoSupport\obj\Debug\IFC_AddGeolocation_Ver1.pdb
 C:\Work\Code\IFC_GeoSupport\obj\Debug\IFC_AddGeolocation_Ver1.csprojAssemblyReference.cache
+C:\Work\Code\IFC_GeoSupport\Old\bin\Debug\IFC_AddGeolocation_Ver1.exe.config
+C:\Work\Code\IFC_GeoSupport\Old\bin\Debug\IFC_AddGeolocation_Ver1.exe
+C:\Work\Code\IFC_GeoSupport\Old\bin\Debug\IFC_AddGeolocation_Ver1.pdb
+C:\Work\Code\IFC_GeoSupport\Old\bin\Debug\MathNet.Numerics.dll
+C:\Work\Code\IFC_GeoSupport\Old\bin\Debug\MathNet.Numerics.xml
+C:\Work\Code\IFC_GeoSupport\Old\obj\Debug\IFC_AddGeolocation_Ver1.csprojAssemblyReference.cache
+C:\Work\Code\IFC_GeoSupport\Old\obj\Debug\IFC_AddGeolocation_Ver1.GeneralForm.resources
+C:\Work\Code\IFC_GeoSupport\Old\obj\Debug\IFC_AddGeolocation_Ver1.MainForm.resources
+C:\Work\Code\IFC_GeoSupport\Old\obj\Debug\IFC_AddGeolocation_Ver1.Properties.Resources.resources
+C:\Work\Code\IFC_GeoSupport\Old\obj\Debug\IFC_AddGeolocation_Ver1.csproj.GenerateResource.cache
+C:\Work\Code\IFC_GeoSupport\Old\obj\Debug\IFC_AddGeolocation_Ver1.csproj.CoreCompileInputs.cache
+C:\Work\Code\IFC_GeoSupport\Old\obj\Debug\IFC_AddGeolocation_Ver1.csproj.CopyComplete
+C:\Work\Code\IFC_GeoSupport\Old\obj\Debug\IFC_AddGeolocation_Ver1.exe
+C:\Work\Code\IFC_GeoSupport\Old\obj\Debug\IFC_AddGeolocation_Ver1.pdb

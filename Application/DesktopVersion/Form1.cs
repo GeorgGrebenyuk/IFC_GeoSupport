@@ -19,8 +19,8 @@ namespace DesktopVersion
 		public Form1()
 		{
 			InitializeComponent();
-			radioButton4.Enabled = false;
-			radioButton3.Checked = true;
+			//radioButton4.Enabled = false;
+			//radioButton3.Checked = true;
 		}
 
 		
@@ -121,6 +121,7 @@ namespace DesktopVersion
 				XElement Value_dY = new XElement("Value_dY", $"{ΔY}");
 				XElement Value_dZ = new XElement("Value_dZ", $"{ΔZ}");
 				XElement Value_ωz = new XElement("Value_ωz", $"{ωz}");
+				XElement Value_Error = new XElement("Accuracy", $"{error}");
 				//Заносим параметры в документ
 				SaveResults.Add(Transformation);
 				Transformation.Add(Transformation_Name);
@@ -128,6 +129,7 @@ namespace DesktopVersion
 				Transformation.Add(Value_dY);
 				Transformation.Add(Value_dZ);
 				Transformation.Add(Value_ωz);
+				Transformation.Add(Value_Error);
 				Value_dX.Add(Value_Units1);
 				Value_dY.Add(Value_Units1);
 				Value_dZ.Add(Value_Units1);
@@ -197,12 +199,12 @@ namespace DesktopVersion
 				FindParameters(Data);
 			}
 			//Запись в консоль результата расчета
-			textBox7.Text = DateTime.Now + " " + "Расчет параметров траансформации закончен!" + Environment.NewLine + $"dX принят = {ΔX} м" + Environment.NewLine + $"dY принят = {ΔY} м" + Environment.NewLine
-				+ $"dZ принят = {ΔZ} м" + Environment.NewLine + $"ωz принят = {ωz} радиан" + Environment.NewLine;
+			textBox7.Text = DateTime.Now + " " + "Расчет параметров трансформации закончен!" + Environment.NewLine + $"dX принят = {ΔX} м" + Environment.NewLine + $"dY принят = {ΔY} м" + Environment.NewLine
+				+ $"dZ принят = {ΔZ} м" + Environment.NewLine + $"ωz принят = {ωz} радиан" + Environment.NewLine + $"Линейная ошибка = {error} м" + Environment.NewLine;
 		}
 		private void button7_Click(object sender, EventArgs e) //Запуск всего процесса
-		{	
-			
+		{
+			ChangingFile.Clear(); //Обнуляем нащ String Builder
 
 			//Присваиваем булеву истину для параметра записи файла
 			if (radioButton1.Checked == true) WriteOrEdit = false;
@@ -211,9 +213,61 @@ namespace DesktopVersion
 			IFC_ParentApplication = listBox1.SelectedItem.ToString();
 			if (IFC_ParentApplication == "AVEVA Everything3D" && radioButton3.Checked == true) IFC_From_Aveva_GlobalCoords();
 			else if (IFC_ParentApplication == "Renga Architecture" && radioButton3.Checked == true) IFC_From_Renga_GlobalCoords();
+			else if (IFC_ParentApplication == "Renga Architecture" && radioButton4.Checked == true) IFC_From_Renga_InternalCoordinates();
 			else textBox7.Text = DateTime.Now + " " + "Для родительского приложения не настроена процедура экспорта!";
 			textBox7.Text = DateTime.Now + " " + "Запись в файл успешно завершена!";
 
+		}
+		private void IFC_From_Renga_InternalCoordinates () //Пересчет каждой точки
+		{
+			long file_count = 0;
+			foreach (string DS in File.ReadAllLines(openFileDialog3.FileName))
+			{
+				file_count++;
+			}
+			file_count = file_count + 10;
+			int Counter = 0;
+
+			var P1 = CreateMatrix.Dense(3, 3, new double[] { Math.Cos(ωz), Math.Sin(ωz), 0d, -Math.Sin(ωz), Math.Cos(ωz), 0d, 0d, 0d, 1d });
+			var dXYZ = CreateMatrix.Dense(3, 1, new double[] { ΔX, ΔY, ΔZ });
+			double NX = 0d;
+			double NY = 0d;
+			double NZ = 0d;
+
+
+			foreach (string data_str in File.ReadAllLines(openFileDialog3.FileName))
+			{
+				if (data_str.Contains("IFCCARTESIANPOINT") == true && data_str.Contains("#10=") == false && data_str.Contains("#22=") == false && data_str.Contains("#187=") == false)
+				{ 
+				string PointCartesian = data_str.Substring(data_str.IndexOf("(") + 2, data_str.LastIndexOf(")") - data_str.IndexOf("(") - 3);
+					//string[] Point_XYZ = PointCartesian.Split(',');
+					double CX = Convert.ToDouble(PointCartesian.Split(',')[0]) / 1000;
+					double CY = Convert.ToDouble(PointCartesian.Split(',')[1]) / 1000;
+					double CZ = 0d;
+					if (PointCartesian.Split(',').Length == 2) CZ = 0d;
+					else CZ = Convert.ToDouble(PointCartesian.Split(',')[2]) / 1000;
+					
+					var C = CreateMatrix.Dense(3, 1, new double[] { CX, CY, CZ });
+				double[][] N_XYZ = (P1 * C + dXYZ).ToRowArrays();
+				NX = Math.Round(N_XYZ[0][0], 6);
+				NY = Math.Round(N_XYZ[1][0], 6);
+				NZ = Math.Round(N_XYZ[2][0], 6);
+					string NumberStr = data_str.Substring(0, data_str.IndexOf("=")+1);
+					if (PointCartesian.Split(',').Length == 2) ChangingFile.AppendLine($"{NumberStr} IFCCARTESIANPOINT(({NX * 1000},{NY * 1000}));");
+					else ChangingFile.AppendLine($"{NumberStr} IFCCARTESIANPOINT(({NX * 1000},{NY * 1000},{NZ * 1000}));");
+				}
+				else ChangingFile.AppendLine(data_str);
+				Counter++;
+				if (Counter == 500000)
+				{
+					if (WriteOrEdit == true) SafeToFile_New(ChangingFile);
+					else SafeToFile_Current(ChangingFile);
+					ChangingFile.Clear();
+					Counter = 0;
+				}
+			}
+			if (WriteOrEdit == true) SafeToFile_New(ChangingFile);
+			else SafeToFile_Current(ChangingFile);
 		}
 		private void IFC_From_Aveva_GlobalCoords()
 		{
@@ -232,13 +286,14 @@ namespace DesktopVersion
 				if (data_str.Contains("#13=") == true)
 				{
 					//Меняем блок кода (потому что строчно долго)
-					data_str2 = $"#13= IFCCARTESIANPOINT((0.,0.,0.));" + Environment.NewLine +
-						"#16= IFCAXIS2PLACEMENT3D(#13,$,$);" + Environment.NewLine +"#17= IFCGEOMETRICREPRESENTATIONCONTEXT($,'Model',3,0,#16,#21);" + Environment.NewLine +
-						"#18= IFCGEOMETRICREPRESENTATIONSUBCONTEXT('Body','Model',*,*,*,*,#17,$,.MODEL_VIEW.,$);" + Environment.NewLine +$"#19= IFCCARTESIANPOINT(({ΔX * 1000},{ΔY * 1000},{ΔZ * 1000}));" + Environment.NewLine +
-						 "#20= IFCDIRECTION((0,0,1));" + Environment.NewLine +$"#21= IFCDIRECTION({Math.Cos(ωz)},{-Math.Sin(ωz)},0));" + Environment.NewLine + "#22= IFCAXIS2PLACEMENT3D(#19,#20,#21);" + Environment.NewLine +
-						 "#23= IFCLOCALPLACEMENT($,#22);" + Environment.NewLine + "#24= IFCCARTESIANPOINT((0,0,0));" + Environment.NewLine + "#25= IFCDIRECTION((0,0,0));" + Environment.NewLine + "#26= IFCDIRECTION((0,0,0));" + Environment.NewLine +
+					data_str2 = $"#13= IFCCARTESIANPOINT(({ΔX * 1000},{ΔY * 1000},{ΔZ * 1000}));" + Environment.NewLine +
+						$"#{file_count + 1}= IFCCARTESIANPOINT((0.,0.,0.));" + Environment.NewLine + "#14= IFCDIRECTION((0.,0.,1.));" + Environment.NewLine + $"#15= IFCDIRECTION(({Math.Cos(ωz)},{-Math.Sin(ωz)},0));" + Environment.NewLine +
+						"#16= IFCAXIS2PLACEMENT3D(#13,#14,#15);" + Environment.NewLine + $"#{file_count + 2}= IFCAXIS2PLACEMENT3D(#{file_count + 1},$,$);" + Environment.NewLine + $"#17= IFCGEOMETRICREPRESENTATIONCONTEXT($,'Model',3,0.,#{file_count + 2},$);" + Environment.NewLine +
+						"#18= IFCGEOMETRICREPRESENTATIONSUBCONTEXT('Body','Model',*,*,*,*,#17,$,.MODEL_VIEW.,$);" + Environment.NewLine + $"#19= IFCCARTESIANPOINT((0.,0.,0.));" + Environment.NewLine +
+						 "#20= IFCDIRECTION((0,0,0));" + Environment.NewLine + $"#21= IFCDIRECTION((0.,0.,0.));" + Environment.NewLine + "#22= IFCAXIS2PLACEMENT3D(#19,#20,#21);" + Environment.NewLine +
+						 "#23= IFCLOCALPLACEMENT($,#16);" + Environment.NewLine + "#24= IFCCARTESIANPOINT((0,0,0));" + Environment.NewLine + "#25= IFCDIRECTION((0,0,0));" + Environment.NewLine + "#26= IFCDIRECTION((0,0,0));" + Environment.NewLine +
 						 "#27= IFCAXIS2PLACEMENT3D(#24,#25,#26);" + Environment.NewLine + "#28= IFCLOCALPLACEMENT(#23,#27);" + Environment.NewLine + "#29= IFCCARTESIANPOINT((0,0,0));" + Environment.NewLine + "#30= IFCDIRECTION((0,0,0));" + Environment.NewLine +
-						 "#31= IFCDIRECTION((0,0,0));" + Environment.NewLine + "#32= IFCAXIS2PLACEMENT3D(#29,#30,#31);" + Environment.NewLine + "#33= IFCLOCALPLACEMENT(#28,#32);" + Environment.NewLine + $"#{file_count+1}= IFCSITE($,$,'',$,$,#33,$,$,.ELEMENT.,$,$,$,$,$);";
+						 "#31= IFCDIRECTION((0,0,0));" + Environment.NewLine + "#32= IFCAXIS2PLACEMENT3D(#29,#30,#31);" + Environment.NewLine + "#33= IFCLOCALPLACEMENT(#28,#32);";
 					ChangingFile.AppendLine(data_str2);
 
 				}
@@ -278,7 +333,7 @@ namespace DesktopVersion
 		private void IFC_From_Renga_GlobalCoords()
 		{
 			long file_count = 0;
-			
+
 			foreach (string DS in File.ReadAllLines(openFileDialog3.FileName))
 			{
 				file_count++;
@@ -289,7 +344,7 @@ namespace DesktopVersion
 			int Counter = 0;
 			//Актуально для версии IFC 4
 			foreach (string data_str in File.ReadAllLines(openFileDialog3.FileName))
-			{ 
+			{
 				if (data_str.Contains("#10=") == true)
 				{
 					//Меняем значение базовой точки #10= IFCCARTESIANPOINT((0.,0.,0.)); на #10= IFCCARTESIANPOINT((X,Y,Z));
@@ -310,11 +365,11 @@ namespace DesktopVersion
 				}
 				else if (data_str.Contains("#14=") == true)
 				{
-					//Меняем параметр IFCGEOMETRICREPRESENTATIONCONTEXT для учета параметра выше и угла поворота модели, индекс увеличивается еще на 1 по причине добавления новой строки выше
-					data_str2 = $"#14= IFCGEOMETRICREPRESENTATIONCONTEXT('Model','Model',3,0,#{file_count + 2},#12);";
+					//Меняем параметр IFCGEOMETRICREPRESENTATIONCONTEXT
+					data_str2 = $"#14= IFCGEOMETRICREPRESENTATIONCONTEXT('Model','Model',3,0.,#{file_count + 2},#12);";
 					ChangingFile.AppendLine(data_str2);
 				}
-				else ChangingFile.AppendLine(data_str);
+				else
 				{
 
 					ChangingFile.AppendLine(data_str);
@@ -331,7 +386,6 @@ namespace DesktopVersion
 			}
 			if (WriteOrEdit == true) SafeToFile_New(ChangingFile);
 			else SafeToFile_Current(ChangingFile);
-
 		}
 
 		/* Код ниже будет выполняеть расчетные функции приложения. 
@@ -339,7 +393,7 @@ namespace DesktopVersion
 		 * Приложение использует пакет Nuget Maths.Numeric ver 4.12
 		 */
 
-		//Элементы трансформации и вспомогательные переменные
+			//Элементы трансформации и вспомогательные переменные
 		public double ΔX = 0d;
 		public double ΔY = 0d;
 		public double ΔZ = 0d;
@@ -464,7 +518,10 @@ namespace DesktopVersion
 			a31 = 0d;
 			a32 = 0d;
 			a33 = 1d;
-			var P = CreateMatrix.Dense(3, 3, new double[] { a11, a12, a13, a21, a22, a23, a31, a32, a33 });
+			//var P = CreateMatrix.Dense(3, 3, new double[] { a11, a12, a13, a21, a22, a23, a31, a32, a33 });
+			//Члены для матрицы вбивать по колонкам !!!!!!!!!!! 
+			var P = CreateMatrix.Dense(3, 3, new double[] { a11, a21, a31, a12, a22, a32, a31, a23, a33 });
+
 			//Перемножаем матрицы для вычисления вспомогательных (без сдвигов) координат
 			var mHelp1 = P * mC1;
 			double[][] mHelp1_result = mHelp1.ToRowArrays();
@@ -494,6 +551,7 @@ namespace DesktopVersion
 			ΔX = Math.Round(dXYZ[0][0], 6);
 			ΔY = Math.Round(dXYZ[1][0], 6);
 			ΔZ = Math.Round(dXYZ[2][0], 6);
+			error = Math.Round(error, 9);
 			//ωz = ωz * 180 / Math.PI;
 		}
 
