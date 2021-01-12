@@ -96,7 +96,7 @@ namespace DesktopVersion
 		{
 			if (openFileDialog2.ShowDialog() == DialogResult.OK)
 			{
-				string[] PointsNew = File.ReadAllLines(openFileDialog1.FileName);
+				string[] PointsNew = File.ReadAllLines(openFileDialog2.FileName);
 				textBox4.Text = PointsNew[0];
 				textBox5.Text = PointsNew[1];
 				textBox6.Text = PointsNew[2];
@@ -211,7 +211,7 @@ namespace DesktopVersion
 			}
 			//Запись в консоль результата расчета
 			textBox7.Text = DateTime.Now + " " + "Расчет параметров трансформации закончен!" + Environment.NewLine + $"dX принят = {ΔX} м" + Environment.NewLine + $"dY принят = {ΔY} м" + Environment.NewLine
-				+ $"dZ принят = {ΔZ} м" + Environment.NewLine + $"ωz принят = {ωz} радиан" + Environment.NewLine + $"Линейная ошибка = {error} м" + Environment.NewLine;
+				+ $"dZ принят = {ΔZ} м" + Environment.NewLine + $"ωz принят = {ωz} радиан ({ωz * 180 / Math.PI} градусов)" + Environment.NewLine + $"Линейная ошибка = {error} м" + Environment.NewLine;
 		}
 		private void button7_Click(object sender, EventArgs e) //Запуск всего процесса
 		{
@@ -419,8 +419,9 @@ namespace DesktopVersion
 		public double ωz = 0d;
 		//double M = 1.0d;
 		public double error = 0d;
-		
-		private void FindParameters(string[] Data) //Получение на вход массива строк (1-6) с основной формы
+
+
+		public Dictionary<string, object> FindParameters(string[] Data) //Получение на вход массива строк (1-6) с основной формы
 		{
 			string OldCSPoint1 = Data[0];
 			string[] OldCSPoint1_str = OldCSPoint1.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -570,6 +571,13 @@ namespace DesktopVersion
 			ΔZ = Math.Round(dXYZ[2][0], 6);
 			error = Math.Round(error, 9);
 			//ωz = ωz * 180 / Math.PI;
+			return new Dictionary<string, object>
+			{
+				{"Смещение по оси X, м", ΔX },
+				{"Смещение по оси Y, м", ΔY },
+				{"Смещение по оси Z, м", ΔZ },
+				{"Угол поворота, градусы", ωz * 180 / Math.PI },
+			};
 		}
 
 		private void openFileDialog1_FileOk(object sender, CancelEventArgs e) //Функция загрузки исходных точек
