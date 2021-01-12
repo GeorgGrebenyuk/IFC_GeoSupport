@@ -230,62 +230,62 @@ namespace DesktopVersion
 			IFC_ParentApplication = listBox1.SelectedItem.ToString();
 			if (IFC_ParentApplication == "AVEVA Everything3D" && radioButton3.Checked == true) IFC_From_Aveva_GlobalCoords();
 			else if (IFC_ParentApplication == "Renga Architecture" && radioButton3.Checked == true) IFC_From_Renga_GlobalCoords();
-			else if (IFC_ParentApplication == "Renga Architecture" && radioButton4.Checked == true) IFC_From_Renga_InternalCoordinates();
+			//else if (IFC_ParentApplication == "Renga Architecture" && radioButton4.Checked == true) IFC_From_Renga_InternalCoordinates();
 			else textBox7.Text = DateTime.Now + " " + "Для родительского приложения не настроена процедура экспорта!";
 			textBox7.Text = DateTime.Now + " " + "Запись в файл успешно завершена!";
 
 		}
-		private void IFC_From_Renga_InternalCoordinates () //Пересчет каждой точки
-		{
-			long file_count = 0;
-			foreach (string DS in File.ReadAllLines(openFileDialog3.FileName))
-			{
-				file_count++;
-			}
-			file_count = file_count + 10;
-			int Counter = 0;
+		//private void IFC_From_Renga_InternalCoordinates () //Пересчет каждой точки
+		//{
+		//	long file_count = 0;
+		//	foreach (string DS in File.ReadAllLines(openFileDialog3.FileName))
+		//	{
+		//		file_count++;
+		//	}
+		//	file_count = file_count + 10;
+		//	int Counter = 0;
 
-			var P1 = CreateMatrix.Dense(3, 3, new double[] { Math.Cos(ωz), Math.Sin(ωz), 0d, -Math.Sin(ωz), Math.Cos(ωz), 0d, 0d, 0d, 1d });
-			var dXYZ = CreateMatrix.Dense(3, 1, new double[] { ΔX, ΔY, ΔZ });
-			double NX = 0d;
-			double NY = 0d;
-			double NZ = 0d;
+		//	var P1 = CreateMatrix.Dense(3, 3, new double[] { Math.Cos(ωz), Math.Sin(ωz), 0d, -Math.Sin(ωz), Math.Cos(ωz), 0d, 0d, 0d, 1d });
+		//	var dXYZ = CreateMatrix.Dense(3, 1, new double[] { ΔX, ΔY, ΔZ });
+		//	double NX = 0d;
+		//	double NY = 0d;
+		//	double NZ = 0d;
 
 
-			foreach (string data_str in File.ReadAllLines(openFileDialog3.FileName))
-			{
-				if (data_str.Contains("IFCCARTESIANPOINT") == true && data_str.Contains("#10=") == false && data_str.Contains("#22=") == false && data_str.Contains("#187=") == false)
-				{ 
-				string PointCartesian = data_str.Substring(data_str.IndexOf("(") + 2, data_str.LastIndexOf(")") - data_str.IndexOf("(") - 3);
-					//string[] Point_XYZ = PointCartesian.Split(',');
-					double CX = Convert.ToDouble(PointCartesian.Split(',')[0]) / 1000;
-					double CY = Convert.ToDouble(PointCartesian.Split(',')[1]) / 1000;
-					double CZ = 0d;
-					if (PointCartesian.Split(',').Length == 2) CZ = 0d;
-					else CZ = Convert.ToDouble(PointCartesian.Split(',')[2]) / 1000;
+		//	foreach (string data_str in File.ReadAllLines(openFileDialog3.FileName))
+		//	{
+		//		if (data_str.Contains("IFCCARTESIANPOINT") == true && data_str.Contains("#10=") == false && data_str.Contains("#22=") == false && data_str.Contains("#187=") == false)
+		//		{ 
+		//		string PointCartesian = data_str.Substring(data_str.IndexOf("(") + 2, data_str.LastIndexOf(")") - data_str.IndexOf("(") - 3);
+		//			//string[] Point_XYZ = PointCartesian.Split(',');
+		//			double CX = Convert.ToDouble(PointCartesian.Split(',')[0]) / 1000;
+		//			double CY = Convert.ToDouble(PointCartesian.Split(',')[1]) / 1000;
+		//			double CZ = 0d;
+		//			if (PointCartesian.Split(',').Length == 2) CZ = 0d;
+		//			else CZ = Convert.ToDouble(PointCartesian.Split(',')[2]) / 1000;
 					
-					var C = CreateMatrix.Dense(3, 1, new double[] { CX, CY, CZ });
-				double[][] N_XYZ = (P1 * C + dXYZ).ToRowArrays();
-				NX = Math.Round(N_XYZ[0][0], 6);
-				NY = Math.Round(N_XYZ[1][0], 6);
-				NZ = Math.Round(N_XYZ[2][0], 6);
-					string NumberStr = data_str.Substring(0, data_str.IndexOf("=")+1);
-					if (PointCartesian.Split(',').Length == 2) ChangingFile.AppendLine($"{NumberStr} IFCCARTESIANPOINT(({NX * 1000},{NY * 1000}));");
-					else ChangingFile.AppendLine($"{NumberStr} IFCCARTESIANPOINT(({NX * 1000},{NY * 1000},{NZ * 1000}));");
-				}
-				else ChangingFile.AppendLine(data_str);
-				Counter++;
-				if (Counter == 500000)
-				{
-					if (WriteOrEdit == true) SafeToFile_New(ChangingFile);
-					else SafeToFile_Current(ChangingFile);
-					ChangingFile.Clear();
-					Counter = 0;
-				}
-			}
-			if (WriteOrEdit == true) SafeToFile_New(ChangingFile);
-			else SafeToFile_Current(ChangingFile);
-		}
+		//			var C = CreateMatrix.Dense(3, 1, new double[] { CX, CY, CZ });
+		//		double[][] N_XYZ = (P1 * C + dXYZ).ToRowArrays();
+		//		NX = Math.Round(N_XYZ[0][0], 6);
+		//		NY = Math.Round(N_XYZ[1][0], 6);
+		//		NZ = Math.Round(N_XYZ[2][0], 6);
+		//			string NumberStr = data_str.Substring(0, data_str.IndexOf("=")+1);
+		//			if (PointCartesian.Split(',').Length == 2) ChangingFile.AppendLine($"{NumberStr} IFCCARTESIANPOINT(({NX * 1000},{NY * 1000}));");
+		//			else ChangingFile.AppendLine($"{NumberStr} IFCCARTESIANPOINT(({NX * 1000},{NY * 1000},{NZ * 1000}));");
+		//		}
+		//		else ChangingFile.AppendLine(data_str);
+		//		Counter++;
+		//		if (Counter == 500000)
+		//		{
+		//			if (WriteOrEdit == true) SafeToFile_New(ChangingFile);
+		//			else SafeToFile_Current(ChangingFile);
+		//			ChangingFile.Clear();
+		//			Counter = 0;
+		//		}
+		//	}
+		//	if (WriteOrEdit == true) SafeToFile_New(ChangingFile);
+		//	else SafeToFile_Current(ChangingFile);
+		//}
 		private void IFC_From_Aveva_GlobalCoords()
 		{
 			long file_count = 0;
@@ -371,7 +371,7 @@ namespace DesktopVersion
 				else if (data_str.Contains("#12=") == true)
 				{
 					//Меняем угол поворота #12= IFCDIRECTION((1.,0.,0.)); на #12= IFCDIRECTION((U,V,0.)); индекс i увеличивается на 1, так как в прежнем пункте мы добавили 1 строку 
-					data_str2 = $"#12= IFCDIRECTION(({-1 * Math.Sin(ωz)},{1 * Math.Cos(ωz)},0.));";
+					data_str2 = $"#12= IFCDIRECTION(({1 * Math.Cos(ωz)},{-1 * Math.Sin(ωz)},0.));";
 					ChangingFile.AppendLine(data_str2);
 				}
 				else if (data_str.Contains("#13=") == true)
@@ -384,6 +384,12 @@ namespace DesktopVersion
 				{
 					//Меняем параметр IFCGEOMETRICREPRESENTATIONCONTEXT
 					data_str2 = $"#14= IFCGEOMETRICREPRESENTATIONCONTEXT('Model','Model',3,0.,#{file_count + 2},#12);";
+					ChangingFile.AppendLine(data_str2);
+				}
+				else if (data_str.Contains("#23=") == true)
+				{
+					//Меняем параметр IFCLOCALPLACEMENT
+					data_str2 = $"#23= IFCLOCALPLACEMENT($,#13);";
 					ChangingFile.AppendLine(data_str2);
 				}
 				else
