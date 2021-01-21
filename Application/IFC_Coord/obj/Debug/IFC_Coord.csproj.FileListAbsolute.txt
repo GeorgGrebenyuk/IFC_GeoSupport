@@ -1,0 +1,10 @@
+C:\Work\Code\IFC_GeoSupport\Application\IFC_Coord\bin\Debug\IFC_Coord.dll
+C:\Work\Code\IFC_GeoSupport\Application\IFC_Coord\bin\Debug\IFC_Coord.pdb
+C:\Work\Code\IFC_GeoSupport\Application\IFC_Coord\bin\Debug\DynamoServices.dll
+C:\Work\Code\IFC_GeoSupport\Application\IFC_Coord\bin\Debug\MathNet.Numerics.dll
+C:\Work\Code\IFC_GeoSupport\Application\IFC_Coord\bin\Debug\MathNet.Numerics.xml
+C:\Work\Code\IFC_GeoSupport\Application\IFC_Coord\obj\Debug\IFC_Coord.csproj.CoreCompileInputs.cache
+C:\Work\Code\IFC_GeoSupport\Application\IFC_Coord\obj\Debug\IFC_Coord.csproj.CopyComplete
+C:\Work\Code\IFC_GeoSupport\Application\IFC_Coord\obj\Debug\IFC_Coord.dll
+C:\Work\Code\IFC_GeoSupport\Application\IFC_Coord\obj\Debug\IFC_Coord.pdb
+C:\Work\Code\IFC_GeoSupport\Application\IFC_Coord\bin\Debug\IFC_Coord.xml

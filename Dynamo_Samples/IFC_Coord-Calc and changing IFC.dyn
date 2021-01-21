@@ -1,0 +1,607 @@
+{
+  "Uuid": "db3303e0-51b4-449c-b5f4-4a551458a6fd",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "IFC_Coord-Calc and changing IFC",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "IFC_Coord.General.CreateDataMassive@string,string,string,string,string,string",
+      "Id": "533a127725b34b819076ba4c2a712b2b",
+      "Inputs": [
+        {
+          "Id": "7365b867c20a46a8a3b8e3a408fdeb99",
+          "Name": "CurrentCS_Point1",
+          "Description": "First point in current coordinate system of project/file\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4a3216e1e29542a69a1e4aabdef3730f",
+          "Name": "CurrentCS_Point2",
+          "Description": "Second point in current coordinate system of project/file\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "980acec91c2c4e1faedb33ae4fbbfab3",
+          "Name": "CurrentCS_Point3",
+          "Description": "Third point in current coordinate system of project/file\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "51e6659935ba4a729b49add2ab3e42f6",
+          "Name": "FinishCS_Point1",
+          "Description": "First point in finish coordinate system of project\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1c6409f464634bf4b8e2226e6dc41a61",
+          "Name": "FinishCS_Point2",
+          "Description": "Second point in finish coordinate system of project\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a3efd2e6a233460b9226f92a69aee2ed",
+          "Name": "FinishCS_Point3",
+          "Description": "Second point in finish coordinate system of project\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9ef26aa7081f432485fd7cef123c04ff",
+          "Name": "string[]",
+          "Description": "Massive of elements",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Node that create a massive of variables to netx calculating\n\nGeneral.CreateDataMassive (CurrentCS_Point1: string, CurrentCS_Point2: string, CurrentCS_Point3: string, FinishCS_Point1: string, FinishCS_Point2: string, FinishCS_Point3: string): string[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "33.297,-7.343,-0.400",
+      "Id": "c7b8185128c74d9ab34b3b6370e7c2aa",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3e20d132b22d45d0844b9d593c5defd5",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "33.297,-7.343,-0.400",
+      "Id": "337f1ceccaa842c7a0270767d825ac07",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d45579c579104453a84ba61bc827529c",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "-8.192,2.370,-0.400",
+      "Id": "4f0450404831443e8b8a79957e7d7391",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1f0a6d14daa34695853fcd1b3960d446",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "2216240.350,530158.768,142",
+      "Id": "10812ed712c84e499cd233c40941c961",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ebd2a7dccb244a4caf7c7ba0e32b0712",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "2216208.042,530186.545,142",
+      "Id": "851508ffad59483d9412ff532eff4d23",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b9d73ec302de43f5a06b408718f57a19",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "2216221.119,530185.692,142",
+      "Id": "878326ac13654fbb9dc5689332ac27a8",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a5724988ee0b4bdda8d16669cf166d74",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "IFC_Coord.Calculates.FindParameters@string[]",
+      "Id": "44a10b67fedb40b9857a36650d227c24",
+      "Inputs": [
+        {
+          "Id": "5e57bee60b85463bad05e9c0a1a57e7c",
+          "Name": "Data",
+          "Description": "Massive of elements\n\nstring[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "677a0f75a40f48eaa63b25d666d4279c",
+          "Name": "Смещение по оси X, м",
+          "Description": "Dictionary with parameters",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5cde2bb0914d4a268798aa788689b71c",
+          "Name": "Смещение по оси Y, м",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "573545b8be6746a7a9e957e60eb96746",
+          "Name": "Смещение по оси Z, м",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4703ad0cb40842beabf86371abca821d",
+          "Name": "Угол поворота, градусы",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "29e9a8dfdcaf4ed1a9bcb730ba8312ea",
+          "Name": "Угол поворота, радианы",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e4ac38324eca4bb6b4cf0322c301fb47",
+          "Name": "Линейная ошибка, м",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Main node that calculate parameters from input strings massive\n\nCalculates.FindParameters (Data: string[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "C:\\Users\\GeorgKeneberg\\Documents\\Temp\\temp1.ifc",
+      "Id": "8aff85ed48954b1ab5dfdc22d7dedd70",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "63ab175942ce4c74b845272d4f191141",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "IFC_Coord.IFC_4.Renga_44@string,string,double,double,double,double",
+      "Id": "fbc442847ea345818a86bb9612656a36",
+      "Inputs": [
+        {
+          "Id": "5efda3bd05624cf4b90c943998daefca",
+          "Name": "PathToInputIFC",
+          "Description": "Absolute path to input IFC file\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2534247c36ff4246aa8ad32823e3d3b2",
+          "Name": "PathToSaveIFC",
+          "Description": "Absolute path to saving IFC file\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4d11a1ad30944a2fa4096eb589f7e099",
+          "Name": "ΔX",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3a2734bdf750409da9b31fc12c30d4db",
+          "Name": "ΔY",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "465c2ff782474d8297d62efaa0e9986f",
+          "Name": "ΔZ",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9beba21bc1b54fc1bae64a13507ac708",
+          "Name": "ωz",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "76cce621e84748199c5cf9a6d901a827",
+          "Name": "void",
+          "Description": "void",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Node for changing IFC file from Renga version 4.4 (by 2020 December), IFC 4\n\nIFC_4.Renga_44 (PathToInputIFC: string, PathToSaveIFC: string, ΔX: double, ΔY: double, ΔZ: double, ωz: double): void"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "HintPath": "C:\\Work\\Code\\IFC_GeoSupport\\Dynamo_Samples\\Renga-Demo.ifc",
+      "InputValue": ".\\Renga-Demo.ifc",
+      "NodeType": "ExtensionNode",
+      "Id": "487622ad3f224bfca71ac1963b40754a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d7971eaee0f643d78898d64e7e00957d",
+          "Name": "",
+          "Description": "Filename",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system to get its filename"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "9ef26aa7081f432485fd7cef123c04ff",
+      "End": "5e57bee60b85463bad05e9c0a1a57e7c",
+      "Id": "3d1b42e4b8da4963a53ae31ce8698d7b"
+    },
+    {
+      "Start": "3e20d132b22d45d0844b9d593c5defd5",
+      "End": "7365b867c20a46a8a3b8e3a408fdeb99",
+      "Id": "918353280d4343918d645d2f530d6723"
+    },
+    {
+      "Start": "d45579c579104453a84ba61bc827529c",
+      "End": "980acec91c2c4e1faedb33ae4fbbfab3",
+      "Id": "8b80bb22ecf24b099a325ee1262df238"
+    },
+    {
+      "Start": "1f0a6d14daa34695853fcd1b3960d446",
+      "End": "4a3216e1e29542a69a1e4aabdef3730f",
+      "Id": "d15104d4b23547c88193c419c4d526fa"
+    },
+    {
+      "Start": "ebd2a7dccb244a4caf7c7ba0e32b0712",
+      "End": "51e6659935ba4a729b49add2ab3e42f6",
+      "Id": "89f799783c25409b8f1b9849a8a62f88"
+    },
+    {
+      "Start": "b9d73ec302de43f5a06b408718f57a19",
+      "End": "1c6409f464634bf4b8e2226e6dc41a61",
+      "Id": "a129f2cedb344ac0a60fc3a88c09a4d4"
+    },
+    {
+      "Start": "a5724988ee0b4bdda8d16669cf166d74",
+      "End": "a3efd2e6a233460b9226f92a69aee2ed",
+      "Id": "b14602030ebb44b5b68e94cb5ca5d9a1"
+    },
+    {
+      "Start": "677a0f75a40f48eaa63b25d666d4279c",
+      "End": "4d11a1ad30944a2fa4096eb589f7e099",
+      "Id": "5a5201509e344487840c56260b7ef8d0"
+    },
+    {
+      "Start": "5cde2bb0914d4a268798aa788689b71c",
+      "End": "3a2734bdf750409da9b31fc12c30d4db",
+      "Id": "c44835c9d0c54b7dbcec9a4395e74ecb"
+    },
+    {
+      "Start": "573545b8be6746a7a9e957e60eb96746",
+      "End": "465c2ff782474d8297d62efaa0e9986f",
+      "Id": "a40355a2e7d24a0fb0c5b9813da9a9d0"
+    },
+    {
+      "Start": "29e9a8dfdcaf4ed1a9bcb730ba8312ea",
+      "End": "9beba21bc1b54fc1bae64a13507ac708",
+      "Id": "91489f0edb924a309dcc3334bb1433de"
+    },
+    {
+      "Start": "63ab175942ce4c74b845272d4f191141",
+      "End": "2534247c36ff4246aa8ad32823e3d3b2",
+      "Id": "2a503e0e47bd4e0da423baba4166082f"
+    },
+    {
+      "Start": "d7971eaee0f643d78898d64e7e00957d",
+      "End": "5efda3bd05624cf4b90c943998daefca",
+      "Id": "78a6eeed578c4319b6bed5c63949a9af"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.8.0.2015",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "General.CreateDataMassive",
+        "Id": "533a127725b34b819076ba4c2a712b2b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 545.5,
+        "Y": 245.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "c7b8185128c74d9ab34b3b6370e7c2aa",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 189.5,
+        "Y": 113.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "337f1ceccaa842c7a0270767d825ac07",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 194.5,
+        "Y": 254.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "4f0450404831443e8b8a79957e7d7391",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 195.5,
+        "Y": 186.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "10812ed712c84e499cd233c40941c961",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 196.5,
+        "Y": 342.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "851508ffad59483d9412ff532eff4d23",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 195.5,
+        "Y": 405.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "878326ac13654fbb9dc5689332ac27a8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 182.5,
+        "Y": 473.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Calculates.FindParameters",
+        "Id": "44a10b67fedb40b9857a36650d227c24",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 906.5,
+        "Y": 247.66255235158286
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "8aff85ed48954b1ab5dfdc22d7dedd70",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1033.7384377305459,
+        "Y": 148.35712822563113
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "IFC_4.Renga_44",
+        "Id": "fbc442847ea345818a86bb9612656a36",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1355.5301714918087,
+        "Y": 247.47661582291423
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "File Path",
+        "Id": "487622ad3f224bfca71ac1963b40754a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1199.0793179735249,
+        "Y": 51.583621191718123
+      }
+    ],
+    "Annotations": [],
+    "X": -436.61846463630673,
+    "Y": 54.753489232291656,
+    "Zoom": 1.036057875600608
+  }
+}

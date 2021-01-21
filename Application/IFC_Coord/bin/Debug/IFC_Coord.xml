@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IFC_Coord</name>
+    </assembly>
+    <members>
+        <member name="M:IFC_Coord.General.CreateDataMassive(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Node that create a massive of variables to netx calculating
+            </summary>
+            <param name="CurrentCS_Point1">First point in current coordinate system of project/file</param>
+            <param name="CurrentCS_Point2">Second point in current coordinate system of project/file</param>
+            <param name="CurrentCS_Point3">Third point in current coordinate system of project/file</param>
+            <param name="FinishCS_Point1">First point in finish coordinate system of project</param>
+            <param name="FinishCS_Point2">Second point in finish coordinate system of project</param>
+            <param name="FinishCS_Point3">Second point in finish coordinate system of project</param>
+            <returns>Massive of elements</returns>
+        </member>
+        <member name="M:IFC_Coord.General.Save_IFC(System.Text.StringBuilder,System.String)">
+            <summary>
+            Technical process (don't need to use) that write changing IFC to external file
+            </summary>
+            <param name="SB">StringBuilder constructor with data</param>
+            <param name="PathToSaveIFC">Absolute path to saving IFC file</param>
+        </member>
+        <member name="M:IFC_Coord.Calculates.FindParameters(System.String[])">
+            <summary>
+            Main node that calculate parameters from input strings massive
+            </summary>
+            <param name="Data">Massive of elements</param>
+            <returns>Dictionary with parameters</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:IFC_Coord.Calculates.SaveResultsOfCalculating(System.Double,System.Double,System.Double,System.Double,System.Double,System.String)" -->
+        <member name="M:IFC_Coord.Calculates.LoadResultsOfCalculating(System.String)">
+            <summary>
+            Node allow load from external XML-file results of previous calculate-session and retuan a Dictionary with values
+            </summary>
+            <param name="PathToFile">Absolute system path to XML-file </param>
+            <returns>Dictionary with values</returns>
+        </member>
+        <member name="M:IFC_Coord.IFC_4.Renga_44(System.String,System.String,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Node for changing IFC file from Renga version 4.4 (by 2020 December), IFC 4
+            </summary>
+            <param name="PathToInputIFC">Absolute path to input IFC file</param>
+            <param name="PathToSaveIFC">Absolute path to saving IFC file</param>
+            <param name="ΔX"></param>
+            <param name="ΔY"></param>
+            <param name="ΔZ"></param>
+            <param name="ωz"></param>
+        </member>
+    </members>
+</doc>

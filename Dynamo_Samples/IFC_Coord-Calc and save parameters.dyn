@@ -1,0 +1,576 @@
+{
+  "Uuid": "db3303e0-51b4-449c-b5f4-4a551458a6fd",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "IFC_Coord-Calc and save parameters",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "IFC_Coord.General.CreateDataMassive@string,string,string,string,string,string",
+      "Id": "533a127725b34b819076ba4c2a712b2b",
+      "Inputs": [
+        {
+          "Id": "7365b867c20a46a8a3b8e3a408fdeb99",
+          "Name": "CurrentCS_Point1",
+          "Description": "First point in current coordinate system of project/file\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4a3216e1e29542a69a1e4aabdef3730f",
+          "Name": "CurrentCS_Point2",
+          "Description": "Second point in current coordinate system of project/file\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "980acec91c2c4e1faedb33ae4fbbfab3",
+          "Name": "CurrentCS_Point3",
+          "Description": "Third point in current coordinate system of project/file\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "51e6659935ba4a729b49add2ab3e42f6",
+          "Name": "FinishCS_Point1",
+          "Description": "First point in finish coordinate system of project\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1c6409f464634bf4b8e2226e6dc41a61",
+          "Name": "FinishCS_Point2",
+          "Description": "Second point in finish coordinate system of project\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a3efd2e6a233460b9226f92a69aee2ed",
+          "Name": "FinishCS_Point3",
+          "Description": "Second point in finish coordinate system of project\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9ef26aa7081f432485fd7cef123c04ff",
+          "Name": "string[]",
+          "Description": "Massive of elements",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Node that create a massive of variables to netx calculating\n\nGeneral.CreateDataMassive (CurrentCS_Point1: string, CurrentCS_Point2: string, CurrentCS_Point3: string, FinishCS_Point1: string, FinishCS_Point2: string, FinishCS_Point3: string): string[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "33.297,-7.343,-0.400",
+      "Id": "c7b8185128c74d9ab34b3b6370e7c2aa",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3e20d132b22d45d0844b9d593c5defd5",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "33.297,-7.343,-0.400",
+      "Id": "337f1ceccaa842c7a0270767d825ac07",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d45579c579104453a84ba61bc827529c",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "-8.192,2.370,-0.400",
+      "Id": "4f0450404831443e8b8a79957e7d7391",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1f0a6d14daa34695853fcd1b3960d446",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "2216240.350,530158.768,142",
+      "Id": "10812ed712c84e499cd233c40941c961",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ebd2a7dccb244a4caf7c7ba0e32b0712",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "2216208.042,530186.545,142",
+      "Id": "851508ffad59483d9412ff532eff4d23",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b9d73ec302de43f5a06b408718f57a19",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "2216221.119,530185.692,142",
+      "Id": "878326ac13654fbb9dc5689332ac27a8",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a5724988ee0b4bdda8d16669cf166d74",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "IFC_Coord.Calculates.FindParameters@string[]",
+      "Id": "44a10b67fedb40b9857a36650d227c24",
+      "Inputs": [
+        {
+          "Id": "5e57bee60b85463bad05e9c0a1a57e7c",
+          "Name": "Data",
+          "Description": "Massive of elements\n\nstring[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "677a0f75a40f48eaa63b25d666d4279c",
+          "Name": "Смещение по оси X, м",
+          "Description": "Dictionary with parameters",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5cde2bb0914d4a268798aa788689b71c",
+          "Name": "Смещение по оси Y, м",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "573545b8be6746a7a9e957e60eb96746",
+          "Name": "Смещение по оси Z, м",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4703ad0cb40842beabf86371abca821d",
+          "Name": "Угол поворота, градусы",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "29e9a8dfdcaf4ed1a9bcb730ba8312ea",
+          "Name": "Угол поворота, радианы",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e4ac38324eca4bb6b4cf0322c301fb47",
+          "Name": "Линейная ошибка, м",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Main node that calculate parameters from input strings massive\n\nCalculates.FindParameters (Data: string[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "IFC_Coord.Calculates.SaveResultsOfCalculating@double,double,double,double,double,string",
+      "Id": "b1a11de085504b64a3dc14acf90fdb15",
+      "Inputs": [
+        {
+          "Id": "6862212ce9254a149a0d6397fe291565",
+          "Name": "ΔX",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0a249e42ef7c4d21844fed0e919a335c",
+          "Name": "ΔY",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2c9966ec05954bc58c0329a3529e96ae",
+          "Name": "ΔZ",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6fe41da45b784eb6a7d8a936c275f193",
+          "Name": "ωz",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5bdd404cfe5142e7b092dc58a2498d8e",
+          "Name": "error",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a037c869b7c14fe7b7b7b611f3f2fc9d",
+          "Name": "SaveFilePath",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d776533a40b445b4a963fcf753752819",
+          "Name": "void",
+          "Description": "void",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Calculates.SaveResultsOfCalculating (ΔX: double, ΔY: double, ΔZ: double, ωz: double, error: double, SaveFilePath: string): void"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "C:\\Users\\GeorgKeneberg\\Documents\\Temp\\temp1.xml",
+      "Id": "8aff85ed48954b1ab5dfdc22d7dedd70",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "63ab175942ce4c74b845272d4f191141",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "9ef26aa7081f432485fd7cef123c04ff",
+      "End": "5e57bee60b85463bad05e9c0a1a57e7c",
+      "Id": "3d1b42e4b8da4963a53ae31ce8698d7b"
+    },
+    {
+      "Start": "3e20d132b22d45d0844b9d593c5defd5",
+      "End": "7365b867c20a46a8a3b8e3a408fdeb99",
+      "Id": "918353280d4343918d645d2f530d6723"
+    },
+    {
+      "Start": "d45579c579104453a84ba61bc827529c",
+      "End": "980acec91c2c4e1faedb33ae4fbbfab3",
+      "Id": "8b80bb22ecf24b099a325ee1262df238"
+    },
+    {
+      "Start": "1f0a6d14daa34695853fcd1b3960d446",
+      "End": "4a3216e1e29542a69a1e4aabdef3730f",
+      "Id": "d15104d4b23547c88193c419c4d526fa"
+    },
+    {
+      "Start": "ebd2a7dccb244a4caf7c7ba0e32b0712",
+      "End": "51e6659935ba4a729b49add2ab3e42f6",
+      "Id": "89f799783c25409b8f1b9849a8a62f88"
+    },
+    {
+      "Start": "b9d73ec302de43f5a06b408718f57a19",
+      "End": "1c6409f464634bf4b8e2226e6dc41a61",
+      "Id": "a129f2cedb344ac0a60fc3a88c09a4d4"
+    },
+    {
+      "Start": "a5724988ee0b4bdda8d16669cf166d74",
+      "End": "a3efd2e6a233460b9226f92a69aee2ed",
+      "Id": "b14602030ebb44b5b68e94cb5ca5d9a1"
+    },
+    {
+      "Start": "677a0f75a40f48eaa63b25d666d4279c",
+      "End": "6862212ce9254a149a0d6397fe291565",
+      "Id": "412468faa2874e91854f35a5609095f7"
+    },
+    {
+      "Start": "5cde2bb0914d4a268798aa788689b71c",
+      "End": "0a249e42ef7c4d21844fed0e919a335c",
+      "Id": "b6bc7f35f8f74e8f84bcb593e9048b0f"
+    },
+    {
+      "Start": "573545b8be6746a7a9e957e60eb96746",
+      "End": "2c9966ec05954bc58c0329a3529e96ae",
+      "Id": "0789b0e4d0b7459f8991a29122c3efb9"
+    },
+    {
+      "Start": "29e9a8dfdcaf4ed1a9bcb730ba8312ea",
+      "End": "6fe41da45b784eb6a7d8a936c275f193",
+      "Id": "964de33a1d09476dae66bb07b300b9c5"
+    },
+    {
+      "Start": "e4ac38324eca4bb6b4cf0322c301fb47",
+      "End": "5bdd404cfe5142e7b092dc58a2498d8e",
+      "Id": "b8a804d2b2214b45be4f0e068c30bce7"
+    },
+    {
+      "Start": "63ab175942ce4c74b845272d4f191141",
+      "End": "a037c869b7c14fe7b7b7b611f3f2fc9d",
+      "Id": "09d26c7a3225483f88ae215e733f3df8"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.8.0.2015",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "General.CreateDataMassive",
+        "Id": "533a127725b34b819076ba4c2a712b2b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 545.5,
+        "Y": 245.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "c7b8185128c74d9ab34b3b6370e7c2aa",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 189.5,
+        "Y": 113.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "337f1ceccaa842c7a0270767d825ac07",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 194.5,
+        "Y": 254.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "4f0450404831443e8b8a79957e7d7391",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 195.5,
+        "Y": 186.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "10812ed712c84e499cd233c40941c961",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 196.5,
+        "Y": 342.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "851508ffad59483d9412ff532eff4d23",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 195.5,
+        "Y": 405.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "878326ac13654fbb9dc5689332ac27a8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 182.5,
+        "Y": 473.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Calculates.FindParameters",
+        "Id": "44a10b67fedb40b9857a36650d227c24",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 906.5,
+        "Y": 249.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Calculates.SaveResultsOfCalculating",
+        "Id": "b1a11de085504b64a3dc14acf90fdb15",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1290.1457325889053,
+        "Y": 231.91749963399724
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "8aff85ed48954b1ab5dfdc22d7dedd70",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1015.5196953274042,
+        "Y": 512.55567757207257
+      }
+    ],
+    "Annotations": [],
+    "X": 23.672842641285229,
+    "Y": 99.12086013585855,
+    "Zoom": 0.74769281712332525
+  }
+}
