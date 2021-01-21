@@ -68,6 +68,7 @@ namespace IFC_Coord
 		public static void Save_IFC(StringBuilder SB, string PathToSaveIFC)
 		{
 			File.AppendAllText(PathToSaveIFC, SB.ToString(), Encoding.UTF8);
+			SB.Clear();
 		}
 
 	}
@@ -82,7 +83,8 @@ namespace IFC_Coord
 		/// </summary>
 		/// <param name="Data">Massive of elements</param>
 		/// <returns>Dictionary with parameters</returns>
-		[MultiReturn(new[] { "Смещение по оси X, м", "Смещение по оси Y, м", "Смещение по оси Z, м", "Угол поворота, градусы", "Угол поворота, радианы", "Линейная ошибка, м" })]
+		/// 
+		[MultiReturn(new[] { "Offset of X-axis, meters", "Offset of Y-axis, meters", "Offset of Z-axis, meters", "Rotation angle, grades", "Rotation angle, radians", "Linear error, meters" })]
 		public static Dictionary<string, object> FindParameters(string[] Data) //Получение на вход массива строк (1-6) с основной формы
 		{
 			//Элементы трансформации и вспомогательные переменные
@@ -238,19 +240,19 @@ namespace IFC_Coord
 			double[][] dXYZ = dXYZ_m.ToRowArrays();
 
 			//Округляем значения чтобы не тащить кучу хвостов из точности расчета
-			ΔX = Math.Round(dXYZ[0][0], 6);
-			ΔY = Math.Round(dXYZ[1][0], 6);
-			ΔZ = Math.Round(dXYZ[2][0], 6);
-			error = Math.Round(error, 9);
+			ΔX = Math.Round(dXYZ[0][0], 8);
+			ΔY = Math.Round(dXYZ[1][0], 8);
+			ΔZ = Math.Round(dXYZ[2][0], 8);
+			error = Math.Round(error, 12);
 			//ωz = ωz * 180 / Math.PI;
 			return new Dictionary<string, object>
 			{
-				{"Смещение по оси X, м", ΔX },
-				{"Смещение по оси Y, м", ΔY },
-				{"Смещение по оси Z, м", ΔZ },
-				{"Угол поворота, градусы", ωz * 180 / Math.PI },
-				{"Угол поворота, радианы", ωz },
-				{"Линейная ошибка, м", error },
+				{"Offset of X-axis, meters", ΔX },
+				{"Offset of Y-axis, meters", ΔY },
+				{"Offset of Z-axis, meters", ΔZ },
+				{"Rotation angle, grades", ωz * 180 / Math.PI },
+				{"Rotation angle, radians", ωz },
+				{"Linear error, meters", error },
 			};
 		}
 
@@ -262,7 +264,7 @@ namespace IFC_Coord
 		/// <param name="ΔZ">Offset for Z-axis, meters</param>
 		/// <param name="ωz">Rotation angle, radians</param>
 		/// <param name="error">Linear error of calculatings, meters</param>
-		/// <param name="SaveFilePath">Absolute path to saving IFC file<</param>
+		/// <param name="SaveFilePath">Absolute path to saving IFC file</param>
 		public static void SaveResultsOfCalculating(double ΔX, double ΔY, double ΔZ, double ωz, double error, string SaveFilePath)
 		{
 			//Создаем файл XML
@@ -299,7 +301,7 @@ namespace IFC_Coord
 		/// </summary>
 		/// <param name="PathToFile">Absolute system path to XML-file </param>
 		/// <returns>Dictionary with values</returns>
-		[MultiReturn(new[] { "Смещение по оси X, м", "Смещение по оси Y, м", "Смещение по оси Z, м", "Угол поворота, градусы", "Угол поворота, радианы", "Линейная ошибка, м" })]
+		[MultiReturn(new[] { "Offset of X-axis, meters", "Offset of Y-axis, meters", "Offset of Z-axis, meters", "Rotation angle, grades", "Rotation angle, radians", "Linear error, meters" })]
 		public static Dictionary <string,object> LoadResultsOfCalculating(string PathToFile)
 		{
 			double ΔX = 0d;
@@ -340,12 +342,12 @@ namespace IFC_Coord
 			}
 			return new Dictionary<string, object>
 			{
-				{"Смещение по оси X, м", ΔX },
-				{"Смещение по оси Y, м", ΔY },
-				{"Смещение по оси Z, м", ΔZ },
-				{"Угол поворота, градусы", ωz * 180 / Math.PI },
-				{"Угол поворота, радианы", ωz },
-				{"Линейная ошибка, м", error },
+				{"Offset of X-axis, meters", ΔX },
+				{"Offset of Y-axis, meters", ΔY },
+				{"Offset of Z-axis, meters", ΔZ },
+				{"Rotation angle, grades", ωz * 180 / Math.PI },
+				{"Rotation angle, radians", ωz },
+				{"Linear error, meters", error },
 			};
 		}
 	}
@@ -395,7 +397,7 @@ namespace IFC_Coord
 				else if (data_str.Contains("#12=") == true)
 				{
 					//Меняем угол поворота #12= IFCDIRECTION((1.,0.,0.)); на #12= IFCDIRECTION((U,V,0.)); индекс i увеличивается на 1, так как в прежнем пункте мы добавили 1 строку 
-					data_str2 = $"#12= IFCDIRECTION(({-1 * Math.Sin(ωz)},{1 * Math.Cos(ωz)},0.));";
+					data_str2 = $"#12= IFCDIRECTION(({1 * Math.Cos(ωz)},{-1 * Math.Sin(ωz)},0.));";
 					ChangingFile.AppendLine(data_str2);
 				}
 				else if (data_str.Contains("#13=") == true)
@@ -407,13 +409,18 @@ namespace IFC_Coord
 				else if (data_str.Contains("#14=") == true)
 				{
 					//Меняем параметр IFCGEOMETRICREPRESENTATIONCONTEXT
-					data_str2 = $"#14= IFCGEOMETRICREPRESENTATIONCONTEXT('Model','Model',3,0.,#{file_count + 2},#12);";
+					data_str2 = $"#14= IFCGEOMETRICREPRESENTATIONCONTEXT('Model','Model',3,0.000001,#{file_count + 2},#12);";
+					ChangingFile.AppendLine(data_str2);
+				}
+				else if (data_str.Contains("#23=") == true)
+				{
+					//Меняем параметр IFCLOCALPLACEMENT
+					data_str2 = $"#23= IFCLOCALPLACEMENT($,#13);";
 					ChangingFile.AppendLine(data_str2);
 				}
 				else
 				{
-
-					ChangingFile.AppendLine(data_str);
+				ChangingFile.AppendLine(data_str);
 				}
 				Counter++;
 				if (Counter == 500000)

@@ -29,8 +29,19 @@
             </summary>
             <param name="Data">Massive of elements</param>
             <returns>Dictionary with parameters</returns>
+            
         </member>
-        <!-- Badly formed XML comment ignored for member "M:IFC_Coord.Calculates.SaveResultsOfCalculating(System.Double,System.Double,System.Double,System.Double,System.Double,System.String)" -->
+        <member name="M:IFC_Coord.Calculates.SaveResultsOfCalculating(System.Double,System.Double,System.Double,System.Double,System.Double,System.String)">
+            <summary>
+            Node that allow save calculating values to external XML-file to future transformations
+            </summary>
+            <param name="ΔX">Offset for X-axis, meters</param>
+            <param name="ΔY">Offset for Y-axis, meters</param>
+            <param name="ΔZ">Offset for Z-axis, meters</param>
+            <param name="ωz">Rotation angle, radians</param>
+            <param name="error">Linear error of calculatings, meters</param>
+            <param name="SaveFilePath">Absolute path to saving IFC file</param>
+        </member>
         <member name="M:IFC_Coord.Calculates.LoadResultsOfCalculating(System.String)">
             <summary>
             Node allow load from external XML-file results of previous calculate-session and retuan a Dictionary with values
