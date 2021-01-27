@@ -752,7 +752,7 @@
         "Left": 1437.3098353033959,
         "Top": -92.0820886168841,
         "Width": 219.61985896431702,
-        "Height": 584.596794521171,
+        "Height": 569.596794521171,
         "FontSize": 36.0,
         "InitialTop": 90.9179113831159,
         "InitialHeight": 437.59679452117103,
@@ -805,7 +805,7 @@
         "Height": 319.0,
         "FontSize": 36.0,
         "InitialTop": 249.0,
-        "InitialHeight": 253.0,
+        "InitialHeight": 145.0,
         "TextblockHeight": 86.0,
         "Background": "#FFFFB8D8"
       }

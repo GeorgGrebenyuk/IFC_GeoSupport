@@ -278,11 +278,13 @@ namespace IFC_Coord
 			XAttribute Transformation_Name = new XAttribute("Name", "1");
 			XAttribute Value_Units1 = new XAttribute("Units", "meters");
 			XAttribute Value_Units2 = new XAttribute("Units", "radians");
+			XAttribute Value_Units3 = new XAttribute("Units", "grades");
 			//Создаем элементы для параметров трансформации и вносим их значения
 			XElement Value_dX = new XElement("Value_dX", $"{ΔX}");
 			XElement Value_dY = new XElement("Value_dY", $"{ΔY}");
 			XElement Value_dZ = new XElement("Value_dZ", $"{ΔZ}");
-			XElement Value_ωz = new XElement("Value_ωz", $"{ωz}");
+			XElement Value_ωz = new XElement("Value_ωz-rad", $"{ωz}");
+			XElement Value_ωz_gr = new XElement("Value_ωz-grad", $"{ωz * 180 / Math.PI}");
 			XElement Value_Error = new XElement("Accuracy", $"{error}");
 			//Заносим параметры в документ
 			SaveResults.Add(Transformation);
@@ -291,11 +293,14 @@ namespace IFC_Coord
 			Transformation.Add(Value_dY);
 			Transformation.Add(Value_dZ);
 			Transformation.Add(Value_ωz);
+			Transformation.Add(Value_ωz_gr);
 			Transformation.Add(Value_Error);
 			Value_dX.Add(Value_Units1);
 			Value_dY.Add(Value_Units1);
 			Value_dZ.Add(Value_Units1);
 			Value_ωz.Add(Value_Units2);
+			Value_ωz_gr.Add(Value_Units3);
+			Value_Error.Add(Value_Units1);
 			SaveResults.Save(Path.GetFullPath(SaveFilePath));
 			
 		}
@@ -307,6 +312,7 @@ namespace IFC_Coord
 		[MultiReturn(new[] { "Offset of X-axis, meters", "Offset of Y-axis, meters", "Offset of Z-axis, meters", "Rotation angle, grades", "Rotation angle, radians", "Linear error, meters" })]
 		public static Dictionary <string,object> LoadResultsOfCalculating(string PathToFile)
 		{
+			NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
 			double ΔX = 0d;
 			double ΔY = 0d;
 			double ΔZ = 0d;
@@ -324,23 +330,23 @@ namespace IFC_Coord
 			{
 				if (Values.Name == "Value_dX")
 				{
-					ΔX = Convert.ToDouble(Values.InnerText);
+					ΔX = Convert.ToDouble(Values.InnerText, nfi);
 				}
 				else if (Values.Name == "Value_dY")
 				{
-					ΔY = Convert.ToDouble(Values.InnerText);
+					ΔY = Convert.ToDouble(Values.InnerText, nfi);
 				}
 				else if (Values.Name == "Value_dZ")
 				{
-					ΔZ = Convert.ToDouble(Values.InnerText);
+					ΔZ = Convert.ToDouble(Values.InnerText, nfi);
 				}
-				else if (Values.Name == "Value_ωz")
+				else if (Values.Name == "Value_ωz-rad")
 				{
-					ωz = Convert.ToDouble(Values.InnerText);
+					ωz = Convert.ToDouble(Values.InnerText, nfi);
 				}
 				else if (Values.Name == "Accuracy")
 				{
-					error = Convert.ToDouble(Values.InnerText);
+					error = Convert.ToDouble(Values.InnerText, nfi);
 				}
 			}
 			return new Dictionary<string, object>
