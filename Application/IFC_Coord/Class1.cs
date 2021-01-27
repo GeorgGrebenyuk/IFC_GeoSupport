@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using MathNet.Numerics.LinearAlgebra;
+using System.Globalization;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
@@ -50,13 +51,14 @@ namespace IFC_Coord
 		/// <returns>Massive of elements</returns>
 		public static string[] CreateDataMassive(string CurrentCS_Point1, string CurrentCS_Point2, string CurrentCS_Point3, string FinishCS_Point1, string FinishCS_Point2, string FinishCS_Point3)
 		{
+			NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
 			string[] Data = new string[6];
-			Data[0] = CurrentCS_Point1;
-			Data[1] = CurrentCS_Point2;
-			Data[2] = CurrentCS_Point3;
-			Data[3] = FinishCS_Point1;
-			Data[4] = FinishCS_Point2;
-			Data[5] = FinishCS_Point3;
+			Data[0] = Convert.ToString(CurrentCS_Point1, nfi);
+			Data[1] = Convert.ToString(CurrentCS_Point2, nfi);
+			Data[2] = Convert.ToString(CurrentCS_Point3, nfi);
+			Data[3] = Convert.ToString(FinishCS_Point1, nfi); 
+			Data[4] = Convert.ToString(FinishCS_Point2, nfi);
+			Data[5] = Convert.ToString(FinishCS_Point3, nfi);
 			return Data;
 		}
 		
@@ -97,47 +99,48 @@ namespace IFC_Coord
 			//double M = 1.0d;
 			double error = 0d;
 
+			NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
 			string OldCSPoint1 = Data[0];
 			string[] OldCSPoint1_str = OldCSPoint1.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-			double XC1 = Convert.ToDouble(OldCSPoint1_str[0]);
-			double YC1 = Convert.ToDouble(OldCSPoint1_str[1]);
-			double ZC1 = Convert.ToDouble(OldCSPoint1_str[2]);
+			double XC1 = Convert.ToDouble(OldCSPoint1_str[0], nfi);
+			double YC1 = Convert.ToDouble(OldCSPoint1_str[1], nfi);
+			double ZC1 = Convert.ToDouble(OldCSPoint1_str[2], nfi);
 			//Создание матрицы mC1 3х1 из исходных данных
 			var mC1 = CreateMatrix.Dense(3, 1, new double[] { XC1, YC1, ZC1 });
 
 			string OldCSPoint2 = Data[1];
 			string[] OldCSPoint2_str = OldCSPoint2.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-			double XC2 = Convert.ToDouble(OldCSPoint2_str[0]);
-			double YC2 = Convert.ToDouble(OldCSPoint2_str[1]);
-			double ZC2 = Convert.ToDouble(OldCSPoint2_str[2]);
+			double XC2 = Convert.ToDouble(OldCSPoint2_str[0], nfi);
+			double YC2 = Convert.ToDouble(OldCSPoint2_str[1], nfi);
+			double ZC2 = Convert.ToDouble(OldCSPoint2_str[2], nfi);
 			//Создание матрицы mC2 3х1 из исходных данных
 			var mC2 = CreateMatrix.Dense(3, 1, new double[] { XC2, YC2, ZC2 });
 
 			string OldCSPoint3 = Data[2];
 			string[] OldCSPoint3_str = OldCSPoint3.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-			double XC3 = Convert.ToDouble(OldCSPoint3_str[0]);
-			double YC3 = Convert.ToDouble(OldCSPoint3_str[1]);
-			double ZC3 = Convert.ToDouble(OldCSPoint3_str[2]);
+			double XC3 = Convert.ToDouble(OldCSPoint3_str[0], nfi);
+			double YC3 = Convert.ToDouble(OldCSPoint3_str[1], nfi);
+			double ZC3 = Convert.ToDouble(OldCSPoint3_str[2], nfi);
 			//Создание матрицы mC3 3х1 из исходных данных
 			var mC3 = CreateMatrix.Dense(3, 1, new double[] { XC3, YC3, ZC3 });
 
 			string NewCSPoint1 = Data[3];
 			string[] NewCSPoint1_str = NewCSPoint1.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-			double XN1 = Convert.ToDouble(NewCSPoint1_str[0]);
-			double YN1 = Convert.ToDouble(NewCSPoint1_str[1]);
-			double ZN1 = Convert.ToDouble(NewCSPoint1_str[2]);
+			double XN1 = Convert.ToDouble(NewCSPoint1_str[0], nfi);
+			double YN1 = Convert.ToDouble(NewCSPoint1_str[1], nfi);
+			double ZN1 = Convert.ToDouble(NewCSPoint1_str[2], nfi);
 
 			string NewCSPoint2 = Data[4];
 			string[] NewCSPoint2_str = NewCSPoint2.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-			double XN2 = Convert.ToDouble(NewCSPoint2_str[0]);
-			double YN2 = Convert.ToDouble(NewCSPoint2_str[1]);
-			double ZN2 = Convert.ToDouble(NewCSPoint2_str[2]);
+			double XN2 = Convert.ToDouble(NewCSPoint2_str[0], nfi);
+			double YN2 = Convert.ToDouble(NewCSPoint2_str[1], nfi);
+			double ZN2 = Convert.ToDouble(NewCSPoint2_str[2], nfi);
 
 			string NewCSPoint3 = Data[5];
 			string[] NewCSPoint3_str = NewCSPoint3.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-			double XN3 = Convert.ToDouble(NewCSPoint3_str[0]);
-			double YN3 = Convert.ToDouble(NewCSPoint3_str[1]);
-			double ZN3 = Convert.ToDouble(NewCSPoint3_str[2]);
+			double XN3 = Convert.ToDouble(NewCSPoint3_str[0], nfi);
+			double YN3 = Convert.ToDouble(NewCSPoint3_str[1], nfi);
+			double ZN3 = Convert.ToDouble(NewCSPoint3_str[2], nfi);
 
 			//Разности координат
 			double dXC1 = XC2 - XC1;
