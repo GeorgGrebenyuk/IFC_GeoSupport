@@ -39,3 +39,4 @@ C:\Work\Code\IFC_GeoSupport\Application\DesktopVersion2\obj\Debug\DesktopVersion
 C:\Work\Code\IFC_GeoSupport\Application\DesktopVersion2\obj\Debug\DesktopVersion.csproj.CopyComplete
 C:\Work\Code\IFC_GeoSupport\Application\DesktopVersion2\obj\Debug\IFC_GeoSupport.exe
 C:\Work\Code\IFC_GeoSupport\Application\DesktopVersion2\obj\Debug\IFC_GeoSupport.pdb
+C:\Work\Code\IFC_GeoSupport\Application\DesktopVersion2\obj\Debug\DesktopVersion.csprojAssemblyReference.cache

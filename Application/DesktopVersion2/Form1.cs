@@ -172,7 +172,7 @@ namespace DesktopVersion
 			}
 			//Запись в консоль результата расчета
 			textBox7.Text ="Расчет параметров трансформации для Navisworks закончен!" + Environment.NewLine + $"dX принят = {ΔX} м" + Environment.NewLine + $"dY принят = {ΔY} м" + Environment.NewLine
-	+ $"dZ принят = {ΔZ} м" + Environment.NewLine + $"ωz принят = {-ωz * 180 / Math.PI} градусов" + Environment.NewLine;
+	+ $"dZ принят = {ΔZ} м" + Environment.NewLine + $"ωz принят = {-ωz * 180 / Math.PI} градусов" + Environment.NewLine + $"Линейная ошибка = {error} м" + Environment.NewLine;
 		}
 		
 		/* Код ниже будет выполняеть расчетные функции приложения. 
